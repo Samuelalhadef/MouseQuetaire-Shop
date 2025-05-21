@@ -1,26 +1,53 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Couleurs exactes basées sur l'image de référence */
+  --background-blue: #0A0E23;  /* Bleu très foncé presque noir pour le fond */
+  --card-blue: #1B2345;  /* Bleu plus clair pour le rectangle principal */
+  --deep-blue: #131C45;  /* Bleu intermédiaire pour les éléments d'interface */
+  --white: #FFFFFF;
+  --blue-text: #B8C3E6;  /* Pour le texte secondaire bleu clair */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--white);
+  background-color: var(--background-blue);
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-full transition-colors;
+  }
+  .btn-primary {
+    @apply bg-white text-[#1B2345] hover:bg-blue-100;
+  }
+  .btn-secondary {
+    @apply border-2 border-white text-white hover:bg-white hover:text-[#1B2345];
+  }
+  
+  /* Pour la barre de navigation */
+  .nav-link {
+    @apply text-white hover:text-blue-200 transition-colors;
+  }
+  .nav-button {
+    @apply bg-white text-[#1B2345] hover:bg-blue-100 font-medium py-2 px-6 rounded-full transition-colors;
+  }
+}
+
+/* Animations personnalisées */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
 }
